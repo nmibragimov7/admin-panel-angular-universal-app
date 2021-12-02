@@ -1,0 +1,36 @@
+.slide {
+  width: 100%;
+  position: relative;
+  font-size: 30px;
+  font-weight: 700;
+  color: #f3f7fa;
+  box-shadow: -4px -4px 8px #fff, 4px 4px 8px #d1dce3;
+
+  &__item {
+    height: 500px;
+    transition: all .3s;
+  }
+
+  &--left,
+  &--right {
+    position: absolute;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+
+  &--left {
+    left: 30px;
+    border-width: 20px 20px 20px 0;
+    border-color: transparent #f3f7fa transparent transparent;
+  }
+
+  &--right {
+    right: 30px;
+    border-width: 20px 0 20px 20px;
+    border-color: transparent transparent transparent #f3f7fa;
+  }
+}

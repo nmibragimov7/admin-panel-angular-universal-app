@@ -1,0 +1,35 @@
+<form [formGroup]="good" class="form d-flex flex-column align-center">
+  <input
+    formControlName="title"
+    class="form__control"
+    [class.error]="good.touched &&  good.controls.title.errors"
+    placeholder="Заголовок"
+  >
+  <input
+      type="number"
+      formControlName="price"
+      class="form__control"
+      [class.error]="good.touched && good.controls.price.errors"
+      placeholder="Стоимость"
+    >
+  <div class="form__select" (clickOutside)="close()">
+    <input
+      class="form__control form__control--wide"
+      [class.error]="good.touched && good.controls.group.errors"
+      formControlName="group"
+      (click)="open()"
+      readOnly
+    >
+    <div class="form__options" *ngIf="isShown">
+      <div *ngFor="let option of options">
+        <div
+          class="form__option"
+          (click)="selectGroup(option)"
+        >
+          {{option}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="form__button" [class.disabled]="!good.valid" (click)="onSubmit()">Добавить</button>
+</form>

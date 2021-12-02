@@ -1,0 +1,16 @@
+<div class="accordions">
+  <div *ngFor="let item of accordions; let i = index;">
+    <div class="accordions__item d-flex content-between align-center" (click)="accordionHandler(item)">
+      <p>{{item.name}}</p>
+      <div class="custom-triangle" [class.open]="currentHash === item.hash" ></div>
+    </div>
+    <div [class.accordions__content]="currentHash === item.hash">
+      <app-all-goods
+        *ngIf="currentHash === 'all' && currentHash === item.hash"
+        [goods]="goodsService.getGoods"
+        [isLoaded]="goodsService.getLoading"
+        [error]="goodsService.getError"
+      ></app-all-goods>
+    </div>
+  </div>
+</div>

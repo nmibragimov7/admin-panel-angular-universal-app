@@ -1,0 +1,14 @@
+<div class="sidebar" [class.open]="getIsOpened">
+  <div class="sidebar__item">
+    <ul class="d-flex flex-column align-center">
+      <li
+        *ngFor="let item of menu; let i = index;"
+        class="sidebar__menu--item"
+        [routerLink]="[item.path]"
+        [class.active]="getActiveMenuName === item.path"
+      >
+        <a (click)="sidebarHandler()">{{item.title}}</a>
+      </li>
+    </ul>
+  </div>
+</div>

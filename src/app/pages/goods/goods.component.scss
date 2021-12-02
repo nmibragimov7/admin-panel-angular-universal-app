@@ -1,0 +1,30 @@
+.accordions {
+
+  &__item {
+    padding: 30px;
+    background-color: #f3f7fa;
+    box-shadow: -4px -4px 8px #fff, 4px 4px 8px #d1dce3;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__content {
+    padding: 2rem;
+    margin: 1rem;
+    background: #fff;
+    box-shadow: -4px -4px 8px #fff, 4px 4px 8px #d1dce3;
+    transition: all .3s;
+  }
+}
+.custom-triangle {
+  width: 0;
+  height: 0;
+  border-color: #000 transparent transparent;
+  border-style: solid;
+  border-width: 8.5px 8.25px 0;
+
+  &.open {
+    border-width: 0 8.5px 8.25px;
+    border-color: transparent transparent #000;
+  }
+}

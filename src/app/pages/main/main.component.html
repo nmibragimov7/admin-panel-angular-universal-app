@@ -1,0 +1,7 @@
+<div class="slide">
+  <div class="slide--left" (click)="onChangeBanner('prev', banner.id)"></div>
+  <div class="slide--right" (click)="onChangeBanner('next', banner.id)"></div>
+  <div class="slide__item d-flex content-center align-center" [ngStyle]="{background: banner.color}">
+    {{banner.title}}
+  </div>
+</div>

@@ -1,0 +1,39 @@
+.header {
+  margin-bottom: 3rem;
+  box-shadow: -4px -4px 8px #fff, 4px 4px 8px #d1dce3;
+  padding: 40px;
+  margin-left: 200px;
+  position: relative;
+
+  @media (max-width: 900px) {
+    margin-left: 0;
+  }
+}
+.burger {
+  display: none;
+  cursor: pointer;
+
+  &__item {
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: #4a5258;
+    margin-bottom: 3px;
+  }
+
+  @media (max-width: 900px) {
+    display: block;
+  }
+}
+.logo {
+  font-size: 24px;
+  font-weight: 600;
+  color: #3367A2;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
