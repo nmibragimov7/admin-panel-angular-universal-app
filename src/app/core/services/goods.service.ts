@@ -15,12 +15,16 @@ export class GoodsService {
   isLoaded: boolean = false;
   error: string = '';
 
-  fetchGoods(): Observable<any> {
-    return this.http.get('https://angulartest-1f024-default-rtdb.firebaseio.com/goods.json')
+  fetchGoods(hash :string): Observable<any> {
+    return this.http.get('http://localhost:8080/api/products', {
+      params: {
+        group: hash
+      }
+    })
   }
 
   addGood(data: any): Observable<any> {
-    return this.http.post('https://angulartest-1f024-default-rtdb.firebaseio.com/goods.json', data)
+    return this.http.post('http://localhost:8080/api/products', data)
   }
 
   get getGoods() {

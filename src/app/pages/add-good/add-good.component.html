@@ -14,6 +14,7 @@
     >
   <div class="form__select" (clickOutside)="close()">
     <input
+      placeholder="Группа"
       class="form__control form__control--wide"
       [class.error]="good.touched && good.controls.group.errors"
       formControlName="group"

@@ -11,6 +11,24 @@
         [isLoaded]="goodsService.getLoading"
         [error]="goodsService.getError"
       ></app-all-goods>
+      <app-all-goods
+        *ngIf="currentHash === 'appliances' && currentHash === item.hash"
+        [goods]="goodsService.getGoods"
+        [isLoaded]="goodsService.getLoading"
+        [error]="goodsService.getError"
+      ></app-all-goods>
+      <app-all-goods
+        *ngIf="currentHash === 'computers-laptops' && currentHash === item.hash"
+        [goods]="goodsService.getGoods"
+        [isLoaded]="goodsService.getLoading"
+        [error]="goodsService.getError"
+      ></app-all-goods>
+      <app-all-goods
+        *ngIf="currentHash === 'clothing-textiles' && currentHash === item.hash"
+        [goods]="goodsService.getGoods"
+        [isLoaded]="goodsService.getLoading"
+        [error]="goodsService.getError"
+      ></app-all-goods>
     </div>
   </div>
 </div>

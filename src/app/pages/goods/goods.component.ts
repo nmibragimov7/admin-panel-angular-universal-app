@@ -50,39 +50,25 @@ export class GoodsComponent implements OnInit {
   ]
 
   ngOnInit(): void {
-    // if(this.isBrowser) {
-    //   console.log('browser');
-      this.route.fragment.subscribe((fragment: any) => {
-        this.currentHash = fragment;
-        if(!fragment) {
-          this.currentHash = 'all'
-          this.fetchGoodsData();
-          return;
-        }
-        this.currentHash = fragment;
-      });
-    // }
-    // if(this.isServer) {
-    //   console.log("server");
-    // }
+    this.route.fragment.subscribe((fragment: any) => {
+      this.currentHash = fragment;
+      if(!fragment) {
+        this.currentHash = 'all'
+        this.fetchGoodsData('');
+        return;
+      }
+      this.currentHash = fragment;
+    });
   }
-  fetchGoodsData() {
+  fetchGoodsData(hash :string) {
     this.goodsService.setLoading();
-    this.goodsService.fetchGoods().pipe(
-      timeout(3000),
+    this.goodsService.fetchGoods(hash).pipe(
+      // timeout(2000),
       // catchError(e => of(null)),
-      map((array: any[]) => {
-        let goods: any = [];
-        Object.keys(array).forEach((key: any) => {
-          goods.push({
-            id: key,
-            group: array[key].group,
-            title: array[key].title,
-            price: array[key].price
-          })
-        })
-        return goods;
-      })
+      // map((array: any[]) => {
+      //   console.log(array)
+      //   return array
+      // })
     ).subscribe(
       (response: any) => {
         if (!response) {
@@ -101,13 +87,22 @@ export class GoodsComponent implements OnInit {
   }
 
   accordionHandler(data: any) {
+    this.goodsService.setData([]);
     this.currentHash = data.hash;
     this.router.navigate(['goods'], {
       fragment: this.currentHash
     })
 
-    if(this.currentHash === 'all') {
-      this.fetchGoodsData();
+    const item = this.accordions.find(item => {
+      if(item.hash === this.currentHash) {
+        return item
+      }
+      return null
+    })
+    if(this.currentHash === "all") {
+      this.fetchGoodsData("");
+    } else {
+      this.fetchGoodsData(item.name);
     }
   }
 
