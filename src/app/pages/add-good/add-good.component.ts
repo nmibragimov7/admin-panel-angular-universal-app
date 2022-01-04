@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 
 import { GoodsService } from "../../core/services/goods.service";
+import { NotificationService } from "../../core/services/notification.service";
 
 @Component({
   selector: 'app-add-good',
@@ -20,7 +21,8 @@ export class AddGoodComponent implements OnInit {
 
   constructor(
     private goodsService: GoodsService,
-    private router: Router
+    private router: Router,
+    public notificationService: NotificationService
   ) {
     this.good = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
@@ -50,14 +52,19 @@ export class AddGoodComponent implements OnInit {
       return;
     }
     this.goodsService.addGood(this.good.value).subscribe(
-      (res: any) => {
+      async (res: any) => {
         if(res) {
-          this.router.navigate(['/goods']);
+          this.goodsService.setError('');
+          await this.router.navigate(['/goods']);
+          this.notificationService.success('Товар добавлен успешно!');
         }
       },
       (error: string) => {
         this.goodsService.setError(error);
       },
+      () => {
+        this.goodsService.setLoading();
+      }
     );
   }
 }

@@ -74,7 +74,7 @@ export class GoodsComponent implements OnInit {
         if (!response) {
           return;
         }
-        this.goodsService.setData(response);
+        this.goodsService.setGoods(response);
         this.goodsService.setError('');
       },
       (error: string) => {
@@ -87,7 +87,7 @@ export class GoodsComponent implements OnInit {
   }
 
   accordionHandler(data: any) {
-    this.goodsService.setData([]);
+    this.goodsService.setGoods([]);
     this.currentHash = data.hash;
     this.router.navigate(['goods'], {
       fragment: this.currentHash

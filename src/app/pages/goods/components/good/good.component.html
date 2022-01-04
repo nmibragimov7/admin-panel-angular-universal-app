@@ -1,0 +1,8 @@
+<div class="link mb--3" (click)="goBack()">< Назад</div>
+<app-base-spinner *ngIf="goodsService.getLoading"></app-base-spinner>
+<div *ngIf="!goodsService.getLoading">
+  <h1>{{goodsService.getGood && goodsService.getGood.title}}</h1>
+  <p>Группа: {{goodsService.getGood && goodsService.getGood.group}}</p>
+  <p>Цена: {{goodsService.getGood && goodsService.getGood.price}}</p>
+</div>
+

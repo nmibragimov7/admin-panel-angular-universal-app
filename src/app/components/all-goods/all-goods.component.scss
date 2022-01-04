@@ -4,4 +4,9 @@
   box-shadow: -4px -4px 8px #fff, 4px 4px 8px #d1dce3;
   border: 1px solid #d1dce3;
   border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.5;
+  }
 }

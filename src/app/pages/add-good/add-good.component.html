@@ -6,12 +6,11 @@
     placeholder="Заголовок"
   >
   <input
-      type="number"
-      formControlName="price"
-      class="form__control"
-      [class.error]="good.touched && good.controls.price.errors"
-      placeholder="Стоимость"
-    >
+    type="number"
+    formControlName="price"
+    class="form__control"
+    [class.error]="good.touched && good.controls.price.errors"
+    placeholder="Стоимость">
   <div class="form__select" (clickOutside)="close()">
     <input
       placeholder="Группа"
@@ -19,8 +18,7 @@
       [class.error]="good.touched && good.controls.group.errors"
       formControlName="group"
       (click)="open()"
-      readOnly
-    >
+      readOnly>
     <div class="form__options" *ngIf="isShown">
       <div *ngFor="let option of options">
         <div

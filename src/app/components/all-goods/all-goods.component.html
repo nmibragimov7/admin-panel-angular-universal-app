@@ -1,6 +1,6 @@
 <app-base-spinner *ngIf="isLoaded"></app-base-spinner>
 <div *ngIf="!isLoaded">
-  <div *ngFor="let good of goods" class="card">
+  <div *ngFor="let good of goods" class="card" (click)="routerHandler(good._id)">
     <p>Название: {{good && good.title}}</p>
     <p>Группа: {{good && good.group}}</p>
     <p>Цена: {{good && good.price}}</p>

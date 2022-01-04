@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import {Observable} from "rxjs";
+import { Observable } from "rxjs";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class GoodsService {
 
@@ -12,6 +12,7 @@ export class GoodsService {
   ) { }
 
   goods: any[] = [];
+  good: any = null;
   isLoaded: boolean = false;
   error: string = '';
 
@@ -23,12 +24,20 @@ export class GoodsService {
     })
   }
 
+  fetchGood(id: string): Observable<any> {
+    return this.http.get(`http://localhost:8080/api/products/${id}`)
+  }
+
   addGood(data: any): Observable<any> {
     return this.http.post('http://localhost:8080/api/products', data)
   }
 
   get getGoods() {
     return this.goods;
+  }
+
+  get getGood() {
+    return this.good;
   }
 
   get getLoading() {
@@ -39,8 +48,12 @@ export class GoodsService {
     return this.error;
   }
 
-  setData(data: any[]) {
+  setGoods(data: any[]) {
     this.goods = data;
+  }
+
+  setGood(data: any) {
+    this.good = data;
   }
 
   setLoading() {

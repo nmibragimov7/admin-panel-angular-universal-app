@@ -4,6 +4,7 @@
       <li
         *ngFor="let item of menu; let i = index;"
         class="sidebar__menu--item"
+        [class.isauth]="!authService.isAuth && (item.path === 'goods' || item.path === 'add-good')"
         [routerLink]="[item.path]"
         [class.active]="getActiveMenuName === item.path"
       >

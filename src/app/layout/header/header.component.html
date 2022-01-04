@@ -8,4 +8,14 @@
   <h1 class="logo">
     <a [routerLink]="['/']">Logo</a>
   </h1>
+  <div class="action">
+    <div *ngIf="authService.isAuth">
+      <span class="action__item action__username">{{authService.getProfile && authService.getProfile.username}}</span>
+      <span class="action__item ml--1" (click)="logout()">Выйти</span>
+    </div>
+    <div *ngIf="!authService.isAuth">
+      <span class="action__item mr--1" (click)="routerHandler('sign-in')">Логин</span>
+      <span class="action__item ml--1" (click)="routerHandler('sign-up')">Зарегистрироваться</span>
+    </div>
+  </div>
 </div>

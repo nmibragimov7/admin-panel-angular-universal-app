@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-all-goods',
@@ -10,9 +11,14 @@ export class AllGoodsComponent implements OnInit {
   @Input() isLoaded!: boolean;
   @Input() error!: string;
 
-  constructor() { }
+  constructor(
+    public router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
+  async routerHandler(id: string) {
+    await this.router.navigate([`goods/${id}`]);
+  }
 }

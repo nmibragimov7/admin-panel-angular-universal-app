@@ -80,6 +80,36 @@ li {
   align-items: center;
 }
 
+@for $i from 1 through 20 {
+  .mt--#{$i} {
+    margin-top: ($i)+rem !important;
+  }
+}
+
+@for $i from 1 through 20 {
+  .mr--#{$i} {
+    margin-right: ($i)+rem !important;
+  }
+}
+
+@for $i from 1 through 20 {
+  .mb--#{$i} {
+    margin-bottom: ($i)+rem !important;
+  }
+}
+
+@for $i from 1 through 20 {
+  .ml--#{$i} {
+    margin-left: ($i)+rem !important;
+  }
+}
+
+@for $i from 1 through 20 {
+  .p--#{$i} {
+    padding: ($i)+rem !important;
+  }
+}
+
 @media (max-width: 900px) {
   .container {
     max-width: 800px;

@@ -21,6 +21,7 @@
     padding: 10px 5px;
     text-align: center;
     width: 125px;
+    cursor: pointer;
 
     &:first-child {
       margin-top: 2rem;
@@ -30,6 +31,10 @@
     &.active {
       background: linear-gradient(63.66deg,#fbba12 19.97%,#ffc921 90.11%);
       border-radius: 15px 0 15px 0;
+    }
+
+    &.isauth {
+      display: none;
     }
   }
 

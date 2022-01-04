@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 import { LayoutService } from '../services/layout.service';
+import { AuthService } from "../../core/services/auth.service";
 
 @Component({
   selector: 'app-sidebar',
@@ -11,7 +12,8 @@ import { LayoutService } from '../services/layout.service';
 export class SidebarComponent implements OnInit {
   constructor(
     private router: Router,
-    private layoutService: LayoutService
+    private layoutService: LayoutService,
+    public authService: AuthService
   ) { }
 
   currentRoute: string = '';
@@ -47,6 +49,8 @@ export class SidebarComponent implements OnInit {
         this.currentRoute = this.cleanHash(this.router.url);
       }
     });
+
+    this.authService.getIsNeedToRefresh();
   }
 
   cleanHash(url: string) {
@@ -55,6 +59,9 @@ export class SidebarComponent implements OnInit {
   }
 
   get getActiveMenuName(): string {
+    if(this.currentRoute.split('/').length > 1) {
+      return this.currentRoute.split('/')[0]
+    }
     return this.currentRoute;
   }
 

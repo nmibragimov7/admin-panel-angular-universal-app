@@ -1,0 +1,15 @@
+<form [formGroup]="form" class="form d-flex flex-column align-center">
+  <input
+    formControlName="username"
+    class="form__control"
+    [class.error]="form.touched &&  form.controls.username.errors"
+    placeholder="Логин"
+  >
+  <input
+    formControlName="password"
+    class="form__control"
+    [class.error]="form.touched &&  form.controls.password.errors"
+    placeholder="Пароль"
+  >
+  <button class="form__button" [class.disabled]="!form.valid" (click)="onSubmit()">Добавить</button>
+</form>

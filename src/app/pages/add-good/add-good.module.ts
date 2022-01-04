@@ -5,8 +5,9 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { ClickOutsideModule } from "ng-click-outside";
 
 import { AddGoodComponent } from "./add-good.component";
+import { AuthGuard } from "../../core/quards/auth.guard";
 
-const routes: Routes = [{ path: '', component: AddGoodComponent}];
+const routes: Routes = [{ path: '', component: AddGoodComponent, canActivate: [AuthGuard]}];
 
 @NgModule({
   declarations: [

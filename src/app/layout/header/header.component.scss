@@ -37,3 +37,24 @@
     opacity: 0.5;
   }
 }
+
+.action {
+  margin-left: auto;
+
+  &__username {
+    color: #3367A2;
+  }
+
+  &__item {
+    cursor: pointer;
+    padding: 10px;
+
+    &:hover {
+      color: #3367A2;
+    }
+
+    @media (max-width: 900px) {
+      margin: 0 !important;
+    }
+  }
+}

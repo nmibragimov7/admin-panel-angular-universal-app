@@ -17,6 +17,11 @@ const MainRoutes = [
           import('../pages/main/main.module').then((m) => m.MainModule),
       },
       {
+        path: '',
+        loadChildren: () =>
+          import('../pages/auth/auth.module').then((m) => m.AuthModule),
+      },
+      {
         path: 'goods',
         loadChildren: () =>
           import('../pages/goods/goods.module').then((m) => m.GoodsModule),
