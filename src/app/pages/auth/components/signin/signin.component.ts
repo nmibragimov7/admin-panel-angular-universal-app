@@ -44,17 +44,19 @@ export class SigninComponent implements OnInit {
         await this.router.navigate(['/']);
         this.notificationService.success('Авторизация прошла успешно!');
         this.authService.fetchProfile().subscribe(
-          (res) => {
+          (res: any) => {
             this.authService.setProfile(res.profile);
           },
-          (error) => {
-            console.log(error);
+          (res: any) => {
+            this.notificationService.error(res.error.error);
+            this.authService.setLoading();
           }
         )
       },
       (res: any) => {
         this.authService.setError(res.error.error);
         this.notificationService.error(res.error.error);
+        this.authService.setLoading();
       },
       () => {
         this.authService.setLoading();

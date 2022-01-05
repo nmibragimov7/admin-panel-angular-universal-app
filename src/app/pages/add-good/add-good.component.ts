@@ -11,6 +11,7 @@ import { NotificationService } from "../../core/services/notification.service";
   styleUrls: ['./add-good.component.scss']
 })
 export class AddGoodComponent implements OnInit {
+
   good!: FormGroup;
   isShown: boolean = false;
   options: any[] = [
@@ -27,11 +28,15 @@ export class AddGoodComponent implements OnInit {
     this.good = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
       price: new FormControl('', Validators.required),
+      files: new FormControl(null),
       group: new FormControl('', Validators.required)
     })
   }
 
   ngOnInit(): void {
+  }
+
+  fileUpload() {
   }
 
   selectGroup(option: any) {
@@ -51,6 +56,7 @@ export class AddGoodComponent implements OnInit {
     if (!this.good.valid) {
       return;
     }
+    this.goodsService.setLoading();
     this.goodsService.addGood(this.good.value).subscribe(
       async (res: any) => {
         if(res) {
@@ -59,8 +65,9 @@ export class AddGoodComponent implements OnInit {
           this.notificationService.success('Товар добавлен успешно!');
         }
       },
-      (error: string) => {
-        this.goodsService.setError(error);
+      (res: any) => {
+        this.goodsService.setError(res.error.message);
+        this.notificationService.error(res.error.message);
       },
       () => {
         this.goodsService.setLoading();

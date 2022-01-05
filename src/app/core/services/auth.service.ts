@@ -10,7 +10,7 @@ export class AuthService {
   isLoaded: boolean = false;
   error: string = '';
   isAuth: boolean = false;
-  profile: any = null
+  profile: any = null;
 
   constructor(
     public http: HttpClient
@@ -49,7 +49,7 @@ export class AuthService {
       refreshExpireTimestamp = new Date(refreshExpireAt).getTime();
     }
 
-    const nowTimestamp = new Date().getTime()
+    const nowTimestamp = new Date().getTime();
     if (nowTimestamp >= accessExpireTimestamp) {
       if (nowTimestamp >= refreshExpireTimestamp) {
         this.setAuth(false);
@@ -80,7 +80,7 @@ export class AuthService {
   }
 
   get getProfile(): any {
-    return this.profile
+    return this.profile;
   }
 
   get getToken(): any {
@@ -107,7 +107,7 @@ export class AuthService {
   }
 
   setProfile(payload: any) {
-    this.profile = payload
+    this.profile = payload;
   }
 
 }

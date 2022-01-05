@@ -1,3 +1,4 @@
+<div class="link mb--3" (click)="goBack()">< Назад</div>
 <form [formGroup]="good" class="form d-flex flex-column align-center">
   <input
     formControlName="title"
@@ -41,5 +42,5 @@
       </div>
     </div>
   </div>
-  <button class="form__button" [class.disabled]="!good.valid" (click)="onSubmit()">Добавить</button>
+  <button class="form__button" [class.disabled]="!good.valid" (click)="onEdit()">Редактировать</button>
 </form>

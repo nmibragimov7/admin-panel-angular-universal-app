@@ -59,6 +59,9 @@ export class SidebarComponent implements OnInit {
   }
 
   get getActiveMenuName(): string {
+    if(this.currentRoute.split('/')[0] === 'edit-good') {
+      return 'goods'
+    }
     if(this.currentRoute.split('/').length > 1) {
       return this.currentRoute.split('/')[0]
     }

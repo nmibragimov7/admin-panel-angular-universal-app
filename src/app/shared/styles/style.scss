@@ -56,12 +56,13 @@ li {
 }
 
 .container {
-  padding: 0px 16px;
+  padding: 20px;
   margin-left: 220px;
+  height: 100vh;
 }
 
 .d-flex {
-  display: flex;
+  display: flex !important;
 }
 
 .flex-column {

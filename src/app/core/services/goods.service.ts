@@ -25,11 +25,19 @@ export class GoodsService {
   }
 
   fetchGood(id: string): Observable<any> {
-    return this.http.get(`http://localhost:8080/api/products/${id}`)
+    return this.http.get(`http://localhost:8080/api/products/${id}`);
   }
 
   addGood(data: any): Observable<any> {
-    return this.http.post('http://localhost:8080/api/products', data)
+    return this.http.post('http://localhost:8080/api/products', data);
+  }
+
+  editGood(data: any, id: string): Observable<any> {
+    return this.http.put(`http://localhost:8080/api/products/${id}`, data);
+  }
+
+  deleteGood(id: string): Observable<any> {
+    return this.http.delete(`http://localhost:8080/api/products/${id}`);
   }
 
   get getGoods() {

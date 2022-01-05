@@ -32,6 +32,11 @@ const MainRoutes = [
           import('../pages/add-good/add-good.module').then((m) => m.AddGoodModule),
       },
       {
+        path: 'edit-good',
+        loadChildren: () =>
+          import('../pages/edit-good/edit-good.module').then((m) => m.EditGoodModule),
+      },
+      {
         path: 'about',
         loadChildren: () =>
           import('../pages/about/about.module').then((m) => m.AboutModule),

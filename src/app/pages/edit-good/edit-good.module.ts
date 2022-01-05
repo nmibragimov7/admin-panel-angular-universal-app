@@ -4,14 +4,14 @@ import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { ClickOutsideModule } from "ng-click-outside";
 
-import { AddGoodComponent } from "./add-good.component";
 import { AuthGuard } from "../../core/quards/auth.guard";
+import { EditGoodComponent } from "./edit-good.component";
 
-const routes: Routes = [{ path: '', component: AddGoodComponent, canActivate: [AuthGuard]}];
+const routes: Routes = [{ path: ':id', component: EditGoodComponent, canActivate: [AuthGuard]}];
 
 @NgModule({
   declarations: [
-    AddGoodComponent
+    EditGoodComponent
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -22,4 +22,4 @@ const routes: Routes = [{ path: '', component: AddGoodComponent, canActivate: [A
   providers: [],
   exports: [RouterModule]
 })
-export class AddGoodModule { }
+export class EditGoodModule { }

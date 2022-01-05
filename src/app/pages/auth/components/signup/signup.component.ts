@@ -44,6 +44,7 @@ export class SignupComponent implements OnInit {
       (res: any) => {
         this.authService.setError(res.error.message);
         this.notificationService.error(res.error.message);
+        this.authService.setLoading();
       },
       () => {
         this.authService.setLoading();

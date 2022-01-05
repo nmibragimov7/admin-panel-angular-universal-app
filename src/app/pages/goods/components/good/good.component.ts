@@ -1,6 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
+
 import { GoodsService } from "../../../../core/services/goods.service";
+import { NotificationService } from "../../../../core/services/notification.service";
 
 @Component({
   selector: 'app-good',
@@ -12,7 +14,8 @@ export class GoodComponent implements OnInit, OnDestroy {
   constructor(
     public route: ActivatedRoute,
     public router: Router,
-    public goodsService: GoodsService
+    public goodsService: GoodsService,
+    public notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -21,19 +24,21 @@ export class GoodComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.goodsService.setGood(null);
   }
 
   fetchGoodData(id: string) {
     this.goodsService.setLoading();
     this.goodsService.fetchGood(id).subscribe(
-      (response: any) => {
-        this.goodsService.setGood(response.product);
+      (res: any) => {
+        this.goodsService.setGood(res.product);
         this.goodsService.setError('');
       },
-      error => {
-        this.goodsService.setError(error);
+      (res: any) => {
+        this.notificationService.error(res.error.error);
+        this.goodsService.setError(res.error.error);
+        this.goodsService.setLoading();
       },
       () => {
         this.goodsService.setLoading();
@@ -42,6 +47,31 @@ export class GoodComponent implements OnInit, OnDestroy {
   }
 
   async goBack() {
-    await this.router.navigate(['/goods'])
+    await this.router.navigate(['/goods']);
   }
+
+  async editHandler() {
+    await this.router.navigate([`/edit-good/${this.route.snapshot.params.id}`]);
+  }
+
+  deleteHandler() {
+    this.goodsService.setLoading();
+    this.goodsService.deleteGood(this.route.snapshot.params.id).subscribe(
+      async (res: any) => {
+        if(res) {
+          await this.router.navigate(['/goods']);
+          this.notificationService.success(res.message);
+        }
+      },
+      (res: any) => {
+        this.notificationService.error(res.error.error);
+        this.goodsService.setError(res.error.error);
+        this.goodsService.setLoading();
+      },
+      () => {
+        this.goodsService.setLoading();
+      }
+    )
+  }
+
 }

@@ -1,4 +1,62 @@
+.link {
+  color: #4db5fe;
+  cursor: pointer;
+}
+
 .form {
+
+  &__label {
+    font-size: 16px;
+    color: #828282;
+    width: 100%;
+  }
+
+  &__select {
+    margin-bottom: 2rem;
+    width: 50%;
+    position: relative;
+
+    @media (max-width: 700px) {
+      width: 100%;
+    }
+  }
+
+  &__options {
+    z-index: 50;
+    height: 180px;
+    overflow-y: auto;
+    border: 1px solid #E1EDF6;
+    position: absolute;
+    top: 70px;
+    padding: 10px;
+    right: 0;
+    left: 0;
+    background: #fff;
+    cursor: pointer;
+    box-shadow: -4px -4px 8px #fff, 4px 4px 8px #d1dce3, inset -4px -4px 8px transparent, inset 4px 4px 8px transparent;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      background-color: #F2F6F9;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 6px;
+      width: 5px;
+      background-color: #479cd9;
+    }
+  }
+
+  &__option {
+    color: #42657A;
+    font-size: 16px;
+    line-height: 200%;
+    padding: 11px;
+
+    &:hover,
+    &:focus {
+      background: #E1EDF6;
+    }
+  }
 
   &__control {
     margin-bottom: 2rem;
@@ -17,6 +75,11 @@
 
     @media (max-width: 700px) {
       width: 100%;
+    }
+
+    &--wide {
+      width: 100%;
+      cursor: pointer;
     }
 
     &::-webkit-outer-spin-button,

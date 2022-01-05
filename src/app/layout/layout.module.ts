@@ -6,7 +6,6 @@ import { LayoutComponent } from "./layout.component";
 import { RoutesModule } from "../routes/routes.module";
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { ClickOutsideModule } from "ng-click-outside";
 
 @NgModule({
   declarations: [
@@ -17,8 +16,7 @@ import { ClickOutsideModule } from "ng-click-outside";
   imports: [
     RouterModule,
     RoutesModule,
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    ClickOutsideModule
+    BrowserModule.withServerTransition({ appId: 'serverApp' })
   ],
   providers: [],
   exports: [LayoutComponent]

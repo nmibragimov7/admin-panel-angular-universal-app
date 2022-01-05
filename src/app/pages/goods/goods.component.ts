@@ -14,8 +14,8 @@ import { GoodsService } from "../../core/services/goods.service";
 export class GoodsComponent implements OnInit {
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
+    public route: ActivatedRoute,
+    public router: Router,
     public goodsService: GoodsService,
     @Inject(PLATFORM_ID) private _platformId: Object
   ) {
@@ -51,13 +51,11 @@ export class GoodsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.fragment.subscribe((fragment: any) => {
-      this.currentHash = fragment;
       if(!fragment) {
-        this.currentHash = 'all'
-        this.fetchGoodsData('');
         return;
       }
       this.currentHash = fragment;
+      this.hashHandler();
     });
   }
   fetchGoodsData(hash :string) {
@@ -70,15 +68,15 @@ export class GoodsComponent implements OnInit {
       //   return array
       // })
     ).subscribe(
-      (response: any) => {
-        if (!response) {
-          return;
+      (res: any) => {
+        if (res) {
+          this.goodsService.setGoods(res.products);
+          this.goodsService.setError('');
         }
-        this.goodsService.setGoods(response);
-        this.goodsService.setError('');
       },
-      (error: string) => {
-        this.goodsService.setError(error);
+      (res: any) => {
+        this.goodsService.setError(res.error.error);
+        this.goodsService.setLoading();
       },
       () => {
         this.goodsService.setLoading();
@@ -86,13 +84,24 @@ export class GoodsComponent implements OnInit {
     )
   }
 
-  accordionHandler(data: any) {
+  async accordionHandler(data: any) {
     this.goodsService.setGoods([]);
+    if(this.currentHash === data.hash) {
+      this.currentHash = '';
+      await this.router.navigate(['goods'], {
+        fragment: ''
+      })
+      return
+    }
     this.currentHash = data.hash;
-    this.router.navigate(['goods'], {
+    await this.router.navigate(['goods'], {
       fragment: this.currentHash
     })
 
+    this.hashHandler();
+  }
+
+  hashHandler() {
     const item = this.accordions.find(item => {
       if(item.hash === this.currentHash) {
         return item
