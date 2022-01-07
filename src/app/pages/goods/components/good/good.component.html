@@ -3,10 +3,10 @@
 <div *ngIf="!goodsService.getLoading" class="mb--2">
   <h1>{{goodsService.getGood && goodsService.getGood.title}}</h1>
   <p>Группа: {{goodsService.getGood && goodsService.getGood.group}}</p>
-  <p>Цена: {{goodsService.getGood && goodsService.getGood.price}}</p>
+  <p>Цена: {{goodsService.getGood && goodsService.getGood.price}}$</p>
 </div>
-<div class="d-flex content-between">
-  <button class="button mr--1" (click)="editHandler()">Редактировать</button>
+<div class="button__group">
+  <button class="button" (click)="editHandler()">Редактировать</button>
   <button class="button button--red" (click)="deleteHandler()">Удалить</button>
 </div>
 

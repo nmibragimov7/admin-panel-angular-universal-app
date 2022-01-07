@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LayoutService } from "./services/layout.service";
+import { LayoutService } from "./components/services/layout.service";
 
 @Component({
   selector: 'app-layout',

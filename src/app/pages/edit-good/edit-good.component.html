@@ -1,4 +1,5 @@
 <div class="link mb--3" (click)="goBack()">< Назад</div>
+<h2 class="mb--1">Редактировать товар</h2>
 <form [formGroup]="good" class="form d-flex flex-column align-center">
   <input
     formControlName="title"
@@ -35,9 +36,9 @@
       <div *ngFor="let option of options">
         <div
           class="form__option"
-          (click)="selectGroup(option)"
+          (click)="selectGroup(option.name)"
         >
-          {{option}}
+          {{option.name}}
         </div>
       </div>
     </div>

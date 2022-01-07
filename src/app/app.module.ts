@@ -12,7 +12,7 @@ import { AuthenticationInterceptorService } from "./core/services/authentication
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -20,7 +20,7 @@ import { AuthenticationInterceptorService } from "./core/services/authentication
     RouterModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

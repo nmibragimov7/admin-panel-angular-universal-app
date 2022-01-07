@@ -3,6 +3,6 @@
   <div *ngFor="let good of goods" class="card" (click)="routerHandler(good._id)">
     <p>Название: {{good && good.title}}</p>
     <p>Группа: {{good && good.group}}</p>
-    <p>Цена: {{good && good.price}}</p>
+    <p>Цена: {{good && good.price}}$</p>
   </div>
 </div>

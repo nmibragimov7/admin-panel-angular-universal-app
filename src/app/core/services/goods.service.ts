@@ -7,14 +7,15 @@ import { Observable } from "rxjs";
 })
 export class GoodsService {
 
-  constructor(
-    private http: HttpClient
-  ) { }
-
   goods: any[] = [];
+  count: any = null;
   good: any = null;
   isLoaded: boolean = false;
   error: string = '';
+
+  constructor(
+    private http: HttpClient
+  ) { }
 
   fetchGoods(hash :string): Observable<any> {
     return this.http.get('http://localhost:8080/api/products', {
@@ -22,6 +23,10 @@ export class GoodsService {
         group: hash
       }
     })
+  }
+
+  fetchCount(): Observable<any> {
+    return this.http.get('http://localhost:8080/api/products/count');
   }
 
   fetchGood(id: string): Observable<any> {
@@ -44,6 +49,10 @@ export class GoodsService {
     return this.goods;
   }
 
+  get getCount() {
+    return this.count;
+  }
+
   get getGood() {
     return this.good;
   }
@@ -58,6 +67,10 @@ export class GoodsService {
 
   setGoods(data: any[]) {
     this.goods = data;
+  }
+
+  setCount(data: any) {
+    this.count = data;
   }
 
   setGood(data: any) {

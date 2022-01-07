@@ -37,9 +37,29 @@ const MainRoutes = [
           import('../pages/edit-good/edit-good.module').then((m) => m.EditGoodModule),
       },
       {
-        path: 'about',
+        path: 'users',
         loadChildren: () =>
-          import('../pages/about/about.module').then((m) => m.AboutModule),
+          import('../pages/users/users.module').then((m) => m.UsersModule),
+      },
+      {
+        path: 'edit-user',
+        loadChildren: () =>
+          import('../pages/edit-user/edit-user.module').then((m) => m.EditUserModule),
+      },
+      {
+        path: 'add-user',
+        loadChildren: () =>
+          import('../pages/add-user/add-user.module').then((m) => m.AddUserModule),
+      },
+      {
+        path: 'groups',
+        loadChildren: () =>
+          import('../pages/groups/groups.module').then((m) => m.GroupsModule),
+      },
+      {
+        path: 'add-group',
+        loadChildren: () =>
+          import('../pages/add-group/add-group.module').then((m) => m.AddGroupModule),
       },
       {...notFound}
     ]

@@ -4,9 +4,14 @@
       <li
         *ngFor="let item of menu; let i = index;"
         class="sidebar__menu--item"
-        [class.hidden]="!authService.isAuth && (item.path === 'goods' || item.path === 'add-good')"
+        [class.hidden]="(!authService.isAuth &&
+          authActiveMenuLink.includes(item.path)) ||
+          (authService.isAuth &&
+          authService.getProfile &&
+          authService.getProfile.role === 'user' &&
+          adminActiveMenuLink.includes(item.path))"
         [routerLink]="[item.path]"
-        [class.active]="getActiveMenuName === item.path"
+        [class.active]="activeMenuLink === item.path"
       >
         <a (click)="sidebarHandler()">{{item.title}}</a>
       </li>

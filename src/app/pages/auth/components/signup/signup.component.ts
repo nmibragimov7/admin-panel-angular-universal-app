@@ -19,8 +19,8 @@ export class SignupComponent implements OnInit {
     public notificationService: NotificationService
   ) {
     this.form = new FormGroup({
-      first_name: new FormControl('', [Validators.required]),
-      last_name: new FormControl('', [Validators.required]),
+      firstName: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     })
@@ -38,7 +38,7 @@ export class SignupComponent implements OnInit {
         if(res) {
           this.authService.setError('');
           await this.router.navigate(['/sign-in']);
-          this.notificationService.success('Регистрация прошла успешно!');
+          this.notificationService.success(res.message);
         }
       },
       (res: any) => {

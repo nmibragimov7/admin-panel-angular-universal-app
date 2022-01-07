@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 
 import { LayoutService } from '../services/layout.service';
-import { AuthService } from "../../core/services/auth.service";
-import {NotificationService} from "../../core/services/notification.service";
+import { AuthService } from "../../../core/services/auth.service";
+import {NotificationService} from "../../../core/services/notification.service";
 
 @Component({
   selector: 'app-header',
@@ -12,6 +12,7 @@ import {NotificationService} from "../../core/services/notification.service";
 })
 export class HeaderComponent implements OnInit {
 
+  isMobile: boolean = false;
   constructor(
     public layoutService: LayoutService,
     public router: Router,
@@ -20,10 +21,14 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if(window.screen.width < 700) {
+      this.isMobile = true;
+    }
+
     if(this.authService.isLogged) {
       this.authService.setLoading();
       this.authService.fetchProfile().subscribe(
-        (res) => {
+        (res: any) => {
           this.authService.setProfile(res.profile);
         },
         (res: any) => {

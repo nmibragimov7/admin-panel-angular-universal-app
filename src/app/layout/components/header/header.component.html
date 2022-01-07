@@ -9,9 +9,12 @@
     <a [routerLink]="['/']">Logo</a>
   </h1>
   <div class="action">
-    <div *ngIf="authService.isAuth">
-      <span class="action__item action__username">{{authService.getProfile && authService.getProfile.username}}</span>
-      <span class="action__item ml--1" (click)="logout()">Выйти</span>
+    <div *ngIf="authService.isAuth" class="d-flex align-center">
+      <div *ngIf="!isMobile" class="ml--1">
+        <span class="action__username">{{authService.getProfile && authService.getProfile.firstName}}</span>
+        <span class="action__username">{{authService.getProfile && authService.getProfile.lastName}}</span>
+      </div>
+      <span class="action__item" (click)="logout()">Выйти</span>
     </div>
     <div *ngIf="!authService.isAuth">
       <span class="action__item mr--1" (click)="routerHandler('sign-in')">Логин</span>

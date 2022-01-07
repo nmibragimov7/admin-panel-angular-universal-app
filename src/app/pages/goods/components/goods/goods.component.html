@@ -1,0 +1,22 @@
+<div class="accordions">
+  <app-base-spinner *ngIf="groupsService.getLoading"></app-base-spinner>
+  <div *ngIf="!groupsService.getLoading">
+    <div *ngFor="let item of accordions; let i = index;">
+      <div class="accordions__item d-flex content-between align-center" (click)="accordionHandler(item)">
+        <div class="d-flex">
+          <p class="mr--1">{{item.name}}</p>
+          <p class="accordions__count">({{findCount(goodsService.getCount, item.hash)}})</p>
+        </div>
+        <div class="custom-triangle" [class.open]="currentHash === item.hash" ></div>
+      </div>
+      <div [class.accordions__content]="currentHash === item.hash">
+        <app-all-goods
+          *ngIf="currentHash === item.hash"
+          [goods]="goodsService.getGoods"
+          [isLoaded]="goodsService.getLoading"
+          [error]="goodsService.getError"
+        ></app-all-goods>
+      </div>
+    </div>
+  </div>
+</div>

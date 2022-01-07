@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 
 import { GoodsService } from "../../core/services/goods.service";
 import { NotificationService } from "../../core/services/notification.service";
+import { GroupsService } from "../../core/services/groups.service";
 
 @Component({
   selector: 'app-add-good',
@@ -14,16 +15,13 @@ export class AddGoodComponent implements OnInit {
 
   good!: FormGroup;
   isShown: boolean = false;
-  options: any[] = [
-    'Бытовая техника',
-    'Компьютеры и ноутбуки',
-    'Одежда и текстиль'
-  ]
+  options: any[] = [];
 
   constructor(
     private goodsService: GoodsService,
     private router: Router,
-    public notificationService: NotificationService
+    public notificationService: NotificationService,
+    public groupsService: GroupsService
   ) {
     this.good = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
@@ -34,6 +32,21 @@ export class AddGoodComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.groupsService.setLoading();
+    this.groupsService.fetchGroups().subscribe(
+      (res: any) => {
+        this.options =  res.groups;
+        this.groupsService.setError('');
+      },
+      (res: any) => {
+        this.notificationService.error(res.error.error);
+        this.groupsService.setError(res.error.error);
+        this.groupsService.setLoading();
+      },
+      () => {
+        this.groupsService.setLoading();
+      }
+    )
   }
 
   fileUpload() {
@@ -62,7 +75,7 @@ export class AddGoodComponent implements OnInit {
         if(res) {
           this.goodsService.setError('');
           await this.router.navigate(['/goods']);
-          this.notificationService.success('Товар добавлен успешно!');
+          this.notificationService.success(res.message);
         }
       },
       (res: any) => {

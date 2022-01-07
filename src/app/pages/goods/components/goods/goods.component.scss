@@ -15,6 +15,11 @@
     box-shadow: -4px -4px 8px #fff, 4px 4px 8px #d1dce3;
     transition: all .3s;
   }
+
+  &__count {
+    font-weight: 600;
+    color: #3367A2;
+  }
 }
 .custom-triangle {
   width: 0;

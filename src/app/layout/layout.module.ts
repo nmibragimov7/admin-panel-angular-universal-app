@@ -4,8 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { LayoutComponent } from "./layout.component";
 import { RoutesModule } from "../routes/routes.module";
-import { HeaderComponent } from './header/header.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { HeaderComponent } from './components/header/header.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [

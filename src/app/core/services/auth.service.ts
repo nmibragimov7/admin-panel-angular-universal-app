@@ -11,6 +11,7 @@ export class AuthService {
   error: string = '';
   isAuth: boolean = false;
   profile: any = null;
+  user: any = null;
 
   constructor(
     public http: HttpClient
@@ -22,6 +23,10 @@ export class AuthService {
 
   signIn(data: any): Observable<any> {
     return this.http.post('http://localhost:8080/api/sign-in', data);
+  }
+
+  refresh(): Observable<any> {
+    return this.http.get('http://localhost:8080/api/refresh');
   }
 
   fetchProfile(): Observable<any> {
@@ -37,7 +42,7 @@ export class AuthService {
     localStorage.removeItem("refreshExpireAt");
   }
 
-  getIsNeedToRefresh(): any {
+  get isNeedToRefresh(): any {
     const tokenExpireAt = localStorage.getItem('tokenExpireAt');
     const refreshExpireAt = localStorage.getItem('refreshExpireAt');
     let accessExpireTimestamp = new Date().getTime();

@@ -1,0 +1,20 @@
+<app-base-spinner *ngIf="isLoaded"></app-base-spinner>
+<div *ngIf="!isLoaded" class="table__wrap">
+  <table class="table">
+    <tr class="table__head">
+      <th *ngFor="let col of cols" class="table__cell">{{col.name}}</th>
+    </tr>
+    <tr *ngFor="let row of rows" class="table__row">
+      <td *ngFor="let col of cols" class="table__cell">
+        <span *ngIf="col.key === 'createdAt' || col.key === 'updatedAt'">{{row[col.key] | dateFilter}}</span>
+        <span *ngIf="col.key !== 'createdAt' && col.key !== 'updatedAt'">{{row[col.key]}}</span>
+        <div *ngIf="col.key === 'actions'" class="d-flex align-center">
+          <button class="table__button mr--1"
+                  (click)="routerHandler.emit(row._id)">Редактровать</button>
+          <button class="table__button table__button--red"
+                  (click)="deleteHandler.emit(row._id)">Удалить</button>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

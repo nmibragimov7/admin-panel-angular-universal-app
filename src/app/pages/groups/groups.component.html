@@ -1,0 +1,8 @@
+<h2 class="mb--1">Группы</h2>
+<app-base-table [cols]="cols"
+                [rows]="rows"
+                [isLoaded]="groupsService.getLoading"
+                (routerHandler)="routerHandler($event)"
+                (deleteHandler)="deleteHandler($event)"></app-base-table>
+<br>
+<button class="button" (click)="routerHandler('')">Создать группу</button>

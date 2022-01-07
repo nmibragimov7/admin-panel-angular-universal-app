@@ -1,0 +1,66 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  &__wrap {
+    width: 100%;
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+      height: 5px;
+      background-color: #E9EAEF;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      height: 5px;
+      background-color: #3367A2;
+    }
+  }
+
+  &__head {
+    background: #D1DCE3;
+  }
+
+  &__row {
+    border-bottom: 1px solid #D1DCE3;
+
+    &:nth-child(odd) {
+      background: #E1EDF7;
+    }
+
+    &:hover {
+      background: #e8896d17;
+    }
+  }
+
+  &__cell {
+    padding: 15px 20px;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  &__button {
+    padding: 10px 15px;
+    font-weight: 600;
+    text-align: center;
+    background: linear-gradient(63.66deg,#4db5fe 19.97%,#43a9f0 90.11%);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    @media (max-width: 700px) {
+      width: 100%;
+    }
+
+    &--red {
+      background: linear-gradient(63.66deg,#E8896D 5%,#E8896D 95%);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

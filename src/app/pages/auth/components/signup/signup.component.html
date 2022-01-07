@@ -1,14 +1,15 @@
+<h2 class="mb--1">Регистрация</h2>
 <form [formGroup]="form" class="form d-flex flex-column align-center">
   <input
-    formControlName="first_name"
+    formControlName="firstName"
     class="form__control"
-    [class.error]="form.touched &&  form.controls.first_name.errors"
+    [class.error]="form.touched &&  form.controls.firstName.errors"
     placeholder="Имя"
   >
   <input
-    formControlName="last_name"
+    formControlName="lastName"
     class="form__control"
-    [class.error]="form.touched &&  form.controls.last_name.errors"
+    [class.error]="form.touched &&  form.controls.lastName.errors"
     placeholder="Фамилия"
   >
   <input

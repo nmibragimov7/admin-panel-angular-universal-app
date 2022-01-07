@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 import { LayoutService } from '../services/layout.service';
-import { AuthService } from "../../core/services/auth.service";
+import { AuthService } from "../../../core/services/auth.service";
 
 @Component({
   selector: 'app-sidebar',
@@ -23,6 +23,10 @@ export class SidebarComponent implements OnInit {
       path: ''
     },
     {
+      title: 'Группа товаров',
+      path: 'groups'
+    },
+    {
       title: 'Товары',
       path: 'goods'
     },
@@ -31,18 +35,28 @@ export class SidebarComponent implements OnInit {
       path: 'add-good'
     },
     {
-      title: 'О нас',
+      title: 'О компании',
       path: 'about'
     },
     {
       title: 'Контакты',
       path: 'contacts'
+    },
+    {
+      title: 'Пользователи',
+      path: 'users'
+    },
+    {
+      title: 'Настройки',
+      path: 'settings'
     }
   ];
+  authActiveMenuLink = ['goods', 'add-good', 'users', 'settings', 'groups'];
+  adminActiveMenuLink = ['users'];
 
   ngOnInit(): void {
     const url = this.cleanHash(this.router.routerState.snapshot.url);
-    this.currentRoute = url
+    this.currentRoute = url;
 
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
@@ -50,7 +64,7 @@ export class SidebarComponent implements OnInit {
       }
     });
 
-    this.authService.getIsNeedToRefresh();
+    this.authService.isNeedToRefresh;
   }
 
   cleanHash(url: string) {
@@ -58,13 +72,27 @@ export class SidebarComponent implements OnInit {
     return url.replace('/', '');
   }
 
-  get getActiveMenuName(): string {
-    if(this.currentRoute.split('/')[0] === 'edit-good') {
-      return 'goods'
-    }
+  get activeMenuLink(): string {
     if(this.currentRoute.split('/').length > 1) {
-      return this.currentRoute.split('/')[0]
+      if(this.currentRoute.split('/')[0] === 'edit-group') {
+        return 'groups';
+      }
+      if(this.currentRoute.split('/')[0] === 'edit-good') {
+        return 'goods';
+      }
+      if(this.currentRoute.split('/')[0] === 'edit-user') {
+        return 'users';
+      }
+      return this.currentRoute.split('/')[0];
     }
+
+    if(this.currentRoute === 'add-group') {
+      return 'groups';
+    }
+    if(this.currentRoute === 'add-user') {
+      return 'users';
+    }
+
     return this.currentRoute;
   }
 

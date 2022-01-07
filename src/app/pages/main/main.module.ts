@@ -14,6 +14,6 @@ const routes: Routes = [{ path: '', component: MainComponent}];
     CommonModule
   ],
   providers: [],
-  exports: [MainComponent, RouterModule]
+  exports: [RouterModule]
 })
 export class MainModule { }
