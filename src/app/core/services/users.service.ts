@@ -32,6 +32,10 @@ export class UsersService {
     return this.http.delete(`http://localhost:8080/api/users/${id}`);
   }
 
+  addUser(data: any): Observable<any> {
+    return this.http.post('http://localhost:8080/api/users', data);
+  }
+
   get getUsers() {
     return this.users;
   }

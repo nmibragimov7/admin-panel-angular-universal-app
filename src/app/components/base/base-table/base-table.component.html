@@ -10,9 +10,11 @@
         <span *ngIf="col.key !== 'createdAt' && col.key !== 'updatedAt'">{{row[col.key]}}</span>
         <div *ngIf="col.key === 'actions'" class="d-flex align-center">
           <button class="table__button mr--1"
-                  (click)="routerHandler.emit(row._id)">Редактровать</button>
+                  (click)="routerHandler.emit(row._id)"
+                  *ngIf="actions.includes('edit')">Редактровать</button>
           <button class="table__button table__button--red"
-                  (click)="deleteHandler.emit(row._id)">Удалить</button>
+                  (click)="deleteHandler.emit(row._id)"
+                  *ngIf="actions.includes('delete')">Удалить</button>
         </div>
       </td>
     </tr>

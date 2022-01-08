@@ -15,7 +15,7 @@ export class AddGroupComponent implements OnInit {
   form!: FormGroup;
 
   constructor(
-    private router: Router,
+    public router: Router,
     public notificationService: NotificationService,
     public groupsService: GroupsService
   ) {
@@ -49,6 +49,10 @@ export class AddGroupComponent implements OnInit {
         this.groupsService.setLoading();
       }
     );
+  }
+
+  async goBack() {
+    await this.router.navigate(['groups']);
   }
 
 }

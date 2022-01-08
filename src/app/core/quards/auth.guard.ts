@@ -24,12 +24,14 @@ export class AuthGuard implements CanActivate {
         if(this.authService.isNeedToRefresh === null) {
           this.notificationService.error('Время сессии истекло!');
           this.authService.logout();
+
+          await this.router.navigate(['/sign-in']);
           observer.next(false);
           observer.complete();
           return;
         } else if (this.authService.isNeedToRefresh) {
           this.authService.refresh().subscribe(
-            (res: any) => {
+            async (res: any) => {
               if(res) {
                 this.authService.setError('');
                 localStorage.setItem('token', res.token);
@@ -37,6 +39,10 @@ export class AuthGuard implements CanActivate {
                 localStorage.setItem('refresh', res.refresh);
                 localStorage.setItem('refreshExpireAt', res.refreshExpireAt);
                 this.authService.setAuth(true);
+
+                observer.next(true);
+                observer.complete();
+                return;
               }
             },
             async (res: any) => {

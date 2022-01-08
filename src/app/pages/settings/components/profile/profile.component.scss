@@ -1,13 +1,19 @@
-.link {
-  color: #4db5fe;
-  cursor: pointer;
-}
-
 .form {
+
+  &__label {
+    font-size: 16px;
+    color: #828282;
+    width: 50%;
+
+    @media (max-width: 700px) {
+      width: 100%;
+    }
+
+  }
 
   &__control {
     margin-bottom: 2rem;
-    width: 50%;
+    width: 100%;
     outline: none;
     font-size: 16px;
     color: #828282;
@@ -20,13 +26,12 @@
     padding: 0 20px;
     transition: all .3s;
 
-    @media (max-width: 700px) {
-      width: 100%;
+    &--readonly {
+      opacity: 0.5;
     }
 
-    &--wide {
+    @media (max-width: 700px) {
       width: 100%;
-      cursor: pointer;
     }
 
     &::-webkit-outer-spin-button,

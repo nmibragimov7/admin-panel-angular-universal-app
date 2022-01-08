@@ -2,37 +2,44 @@
 <h2 class="mb--1">Редактировать пользователя</h2>
 <app-base-spinner *ngIf="usersService.getLoading"></app-base-spinner>
 <form *ngIf="!usersService.getLoading" [formGroup]="form" class="form d-flex flex-column align-center">
-  <input
-    formControlName="firstName"
-    class="form__control"
-    [class.error]="form.touched &&  form.controls.firstName.errors"
-    placeholder="Имя"
-  >
-  <input
-    formControlName="lastName"
-    class="form__control"
-    [class.error]="form.touched && form.controls.lastName.errors"
-    placeholder="Фамилия">
-  <input
-    formControlName="username"
-    class="form__control"
-    [class.error]="form.touched && form.controls.username.errors"
-    placeholder="Логин">
-  <div class="form__select" (clickOutside)="close()">
+  <label class="form__label">Имя*
     <input
-      placeholder="Роль"
-      class="form__control form__control--wide"
-      [class.error]="form.touched && form.controls.roleName.errors"
-      formControlName="roleName"
-      (click)="open()"
-      readOnly>
-    <div class="form__options" *ngIf="isShown">
-      <div *ngFor="let option of options">
-        <div
-          class="form__option"
-          (click)="selectGroup(option)"
-        >
-          {{option.name}}
+      formControlName="firstName"
+      class="form__control"
+      [class.error]="form.touched &&  form.controls.firstName.errors"
+      placeholder="Имя">
+  </label>
+  <label class="form__label">Фамилия*
+    <input
+      formControlName="lastName"
+      class="form__control"
+      [class.error]="form.touched && form.controls.lastName.errors"
+      placeholder="Фамилия">
+  </label>
+  <label class="form__label">Логин*
+    <input
+      formControlName="username"
+      class="form__control"
+      [class.error]="form.touched && form.controls.username.errors"
+      placeholder="Логин">
+  </label>
+  <div class="form__label">Роль*
+    <div class="form__select"(clickOutside)="close()">
+      <input
+        placeholder="Роль"
+        class="form__control form__control--wide"
+        [class.error]="form.touched && form.controls.roleName.errors"
+        formControlName="roleName"
+        (click)="open()"
+        readOnly>
+      <div class="form__options" *ngIf="isShown">
+        <div *ngFor="let option of options">
+          <div
+            class="form__option"
+            (click)="selectGroup(option)"
+          >
+            {{option.name}}
+          </div>
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@
                 [rows]="rows"
                 [isLoaded]="groupsService.getLoading"
                 (routerHandler)="routerHandler($event)"
-                (deleteHandler)="deleteHandler($event)"></app-base-table>
+                (deleteHandler)="deleteHandler($event)"
+                [actions]="['delete']"></app-base-table>
 <br>
-<button class="button" (click)="routerHandler('')">Создать группу</button>
+<button class="button" (click)="routerHandler('')">Добавить группу</button>

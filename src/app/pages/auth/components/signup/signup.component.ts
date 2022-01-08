@@ -33,6 +33,7 @@ export class SignupComponent implements OnInit {
     if (!this.form.valid) {
       return;
     }
+    this.authService.setLoading();
     this.authService.signUp(this.form.value).subscribe(
       async (res: any) => {
         if(res) {

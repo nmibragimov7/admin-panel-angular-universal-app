@@ -1,0 +1,14 @@
+<div class="settings">
+  <div class="settings__tabs">
+    <div *ngFor="let tab of tabs"
+         (click)="tabHandler(tab)"
+         class="settings__tab"
+         [class.active]="currentHash === tab.hash || (currentHash === '' && tab.hash === 'profile')">{{tab.name}}</div>
+  </div>
+  <div *ngIf="currentHash === 'profile' || currentHash === ''" class="settings__content">
+    <app-profile></app-profile>
+  </div>
+  <div *ngIf="currentHash === 'change-password'" class="settings__content">
+    <app-change-password></app-change-password>
+  </div>
+</div>

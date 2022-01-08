@@ -1,0 +1,40 @@
+.settings {
+
+  &__tabs {
+    display: flex;
+    align-items: center;
+
+    @media (max-width: 700px) {
+      justify-content: space-between;
+    }
+  }
+
+  &__tab {
+    padding: 20px 0;
+    background-color: #EDF2F6;
+    box-shadow: -5px -5px 10px #d1dce3;
+    border: none;
+    cursor: pointer;
+    width: 200px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+
+    &:first-child {
+      margin-right: 1rem;
+    }
+  }
+
+  &__content {
+    padding: 2rem;
+    background: #fff;
+    box-shadow: -5px -5px 10px #d1dce3;
+    transition: all 0.3s;
+  }
+
+}
+
+.active {
+  background: #fff;
+  color: #3367A2;
+}

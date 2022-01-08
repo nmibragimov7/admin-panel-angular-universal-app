@@ -61,6 +61,11 @@ const MainRoutes = [
         loadChildren: () =>
           import('../pages/add-group/add-group.module').then((m) => m.AddGroupModule),
       },
+      {
+        path: 'settings',
+        loadChildren: () =>
+          import('../pages/settings/settings.module').then((m) => m.SettingsModule),
+      },
       {...notFound}
     ]
   }

@@ -3,6 +3,7 @@
                 [rows]="usersService.getUsers"
                 [isLoaded]="usersService.getLoading"
                 (routerHandler)="routerHandler($event)"
-                (deleteHandler)="deleteHandler($event)"></app-base-table>
+                (deleteHandler)="deleteHandler($event)"
+                [actions]="['delete', 'edit']"></app-base-table>
 <br>
-<button class="button" (click)="routerHandler('')">Создать пользователя</button>
+<button class="button" (click)="routerHandler('')">Добавить пользователя</button>

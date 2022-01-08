@@ -20,7 +20,7 @@ export class SigninComponent implements OnInit {
   ) {
     this.form = new FormGroup({
       username: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     })
   }
 
@@ -31,6 +31,7 @@ export class SigninComponent implements OnInit {
     if (!this.form.valid) {
       return;
     }
+    this.authService.setLoading();
     this.authService.signIn(this.form.value).subscribe(
       async (res: any) => {
         if(res) {
@@ -49,7 +50,6 @@ export class SigninComponent implements OnInit {
           },
           (res: any) => {
             this.notificationService.error(res.error.error);
-            this.authService.setLoading();
           }
         )
       },

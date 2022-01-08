@@ -1,0 +1,27 @@
+<h2 class="mb--1">Редактировать профиль</h2>
+<app-base-spinner *ngIf="authService.getLoading"></app-base-spinner>
+<form *ngIf="!authService.getLoading" [formGroup]="form" class="form d-flex flex-column align-center">
+  <label class="form__label">Имя*
+    <input
+      formControlName="firstName"
+      class="form__control"
+      [class.error]="form.touched &&  form.controls.firstName.errors"
+      placeholder="Имя">
+  </label>
+  <label class="form__label">Фамилия*
+    <input
+      formControlName="lastName"
+      class="form__control"
+      [class.error]="form.touched && form.controls.lastName.errors"
+      placeholder="Фамилия">
+  </label>
+  <label class="form__label">Логин
+    <input
+      formControlName="username"
+      class="form__control form__control--readonly"
+      [class.error]="form.touched && form.controls.username.errors"
+      placeholder="Логин"
+      readonly>
+  </label>
+  <button class="form__button" [class.disabled]="!form.valid" (click)="onSubmit()">Редактировать</button>
+</form>

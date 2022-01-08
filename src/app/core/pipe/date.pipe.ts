@@ -8,7 +8,7 @@ import { DatePipe } from '@angular/common';
 export class DateFilter implements PipeTransform {
   transform(
     date: Date | string,
-    format: string = 'dd.MM.yyyy HH:MM'
+    format: string = 'dd.MM.yyyy HH:mm'
   ): any {
     date = new Date(date);
     return new DatePipe('en-US').transform(date, format);

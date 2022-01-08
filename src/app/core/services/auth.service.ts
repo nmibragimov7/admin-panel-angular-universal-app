@@ -33,6 +33,14 @@ export class AuthService {
     return this.http.get(`http://localhost:8080/api/me`);
   }
 
+  editProfile(data: any): Observable<any> {
+    return this.http.put('http://localhost:8080/api/me', data);
+  }
+
+  changePassword(data: any): Observable<any> {
+    return this.http.put('http://localhost:8080/api/change-password', data);
+  }
+
   logout() {
     this.setProfile(null);
     this.setAuth(false);

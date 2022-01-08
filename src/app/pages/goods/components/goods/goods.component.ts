@@ -15,6 +15,11 @@ import { GroupsService } from "../../../../core/services/groups.service";
 })
 export class GoodsComponent implements OnInit {
 
+  isServer!: boolean;
+  isBrowser!: boolean;
+  currentHash: string = '';
+  accordions: any[] = [];
+
   constructor(
     public route: ActivatedRoute,
     public router: Router,
@@ -26,11 +31,6 @@ export class GoodsComponent implements OnInit {
     this.isBrowser = isPlatformBrowser(_platformId);
     this.isBrowser = isPlatformServer(_platformId);
   }
-
-  isServer!: boolean;
-  isBrowser!: boolean;
-  currentHash: string = '';
-  accordions: any[] = [];
 
   ngOnInit(): void {
     this.fetchGroups();

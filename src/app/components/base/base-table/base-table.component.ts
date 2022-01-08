@@ -13,6 +13,7 @@ export class BaseTableComponent implements OnInit {
   @Input() cols!: any[];
   @Input() rows!: any[];
   @Input() isLoaded!: boolean;
+  @Input() actions!: string[];
   @Output() routerHandler = new EventEmitter<any>();
   @Output() deleteHandler = new EventEmitter<any>();
 

@@ -68,7 +68,18 @@ export class SidebarComponent implements OnInit {
   }
 
   cleanHash(url: string) {
-    if(url.indexOf('#') >= 0) return 'goods';
+    if(url.indexOf('#') >= 0) {
+      switch (url.split('#')[0]) {
+        case '/goods':
+          return 'goods';
+          break;
+        case '/settings':
+          return 'settings';
+          break;
+        default:
+          return ''
+      }
+    }
     return url.replace('/', '');
   }
 
