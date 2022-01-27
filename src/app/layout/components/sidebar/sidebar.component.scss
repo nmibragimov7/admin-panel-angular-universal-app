@@ -5,9 +5,7 @@
   left: 0;
   width: 200px;
   z-index: 100;
-  background: linear-gradient(
-      84.07deg,#4db5fe 19.97%,#43a9f0 90.11%);
-  box-shadow: inset 4px 4px 8px #9fd8ff, inset -4px -4px 8px #479cd9;
+  background: #1C2834;
   color: #f3f7fa;
   padding: 20px;
   transition: all .4s;
@@ -29,8 +27,8 @@
 
     &:hover,
     &.active {
-      background: linear-gradient(63.66deg,#fbba12 19.97%,#ffc921 90.11%);
-      border-radius: 15px 0 15px 0;
+      background: #FBBA12;
+      border-radius: 15px;
     }
 
     &.hidden {

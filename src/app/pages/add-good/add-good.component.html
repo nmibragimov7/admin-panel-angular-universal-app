@@ -42,5 +42,20 @@
       </div>
     </div>
   </div>
+  <label
+    class="form__control"
+    for="file"
+    style="display: flex; align-items: center"
+  >
+    <input
+      type="file"
+      name="file"
+      accept=".jpeg,.jpg,.img,.png"
+      id="file"
+      hidden
+      (change)="fileChange($event)"/>
+    <div *ngIf="!fileName">Загрузить файл...</div>
+    <div *ngIf="fileName">{{ fileName }}</div>
+  </label>
   <button class="form__button" [class.disabled]="!good.valid" (click)="onSubmit()">Добавить</button>
 </form>

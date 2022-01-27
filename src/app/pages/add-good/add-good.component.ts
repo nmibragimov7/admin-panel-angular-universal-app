@@ -16,6 +16,7 @@ export class AddGoodComponent implements OnInit {
   good!: FormGroup;
   isShown: boolean = false;
   options: any[] = [];
+  fileName: string = '';
 
   constructor(
     private goodsService: GoodsService,
@@ -26,7 +27,7 @@ export class AddGoodComponent implements OnInit {
     this.good = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
       price: new FormControl('', Validators.required),
-      files: new FormControl(null),
+      file: new FormControl('', Validators.required),
       group: new FormControl('', Validators.required)
     })
   }
@@ -63,6 +64,25 @@ export class AddGoodComponent implements OnInit {
 
   close() {
     this.isShown = false;
+  }
+
+  fileChange(event: any): void {
+    console.log(event.target.files)
+    const fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      const file: File = fileList[0];
+      const LIMIT = 5000000;
+      if (file.size > LIMIT) {
+        this.notificationService.error('Файл больше 5 мб');
+        return;
+      }
+      this.good.controls.file.setValue(file);
+      // this.good.patchValue({
+      //   file
+      // });
+      // @ts-ignore
+      this.fileName = this.good.get('file').value.name;
+    }
   }
 
   onSubmit() {
