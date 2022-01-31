@@ -16,6 +16,7 @@ export class EditGoodComponent implements OnInit {
   good!: FormGroup;
   isShown: boolean = false;
   options: any[] = [];
+  fileName: any = '';
 
   constructor(
     public goodsService: GoodsService,
@@ -27,7 +28,7 @@ export class EditGoodComponent implements OnInit {
     this.good = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
       price: new FormControl('', Validators.required),
-      files: new FormControl(null),
+      file: new FormControl('', Validators.required),
       group: new FormControl('', Validators.required)
     })
   }
@@ -63,7 +64,9 @@ export class EditGoodComponent implements OnInit {
       (res: any) => {
         this.good.controls.title.setValue(res.product.title);
         this.good.controls.price.setValue(res.product.price);
+        this.good.controls.file.setValue(res.product.file);
         this.good.controls.group.setValue(res.product.group);
+        this.fileName = res.product.file;
         this.goodsService.setError('');
       },
       (res: any) => {
@@ -77,9 +80,6 @@ export class EditGoodComponent implements OnInit {
     )
   }
 
-  fileUpload() {
-  }
-
   selectGroup(option: any) {
     this.good.controls.group.setValue(option);
     this.close();
@@ -91,6 +91,25 @@ export class EditGoodComponent implements OnInit {
 
   close() {
     this.isShown = false;
+  }
+
+  fileChange(event: any): void {
+    const fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      const file: File = fileList[0];
+      const LIMIT = 5000000;
+      if (file.size > LIMIT) {
+        this.notificationService.error('Файл больше 5 мб');
+        return;
+      }
+      this.good.controls.file.setValue(file);
+      this.fileName = this.good.get('file')?.value.name;
+    }
+  }
+
+  fileDelete() {
+    this.good.controls.file.setValue('');
+    this.fileName = '';
   }
 
   onEdit() {

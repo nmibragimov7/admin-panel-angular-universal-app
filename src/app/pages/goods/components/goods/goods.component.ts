@@ -29,7 +29,10 @@ export class GoodsComponent implements OnInit {
   @Inject(PLATFORM_ID) private _platformId: Object
   ) {
     this.isBrowser = isPlatformBrowser(_platformId);
+    console.log("spa", this.isBrowser)
+
     this.isBrowser = isPlatformServer(_platformId);
+    console.log("ssr", this.isBrowser)
   }
 
   ngOnInit(): void {
@@ -43,8 +46,11 @@ export class GoodsComponent implements OnInit {
       (res: any) => {
         this.accordions = [{
           name: 'Все товары',
-          hash: 'all'
-        }, ...res.groups];
+          hash: 'все-товары'
+        }];
+        if(res.groups) {
+          this.accordions = [...this.accordions, ...res.groups];
+        }
         this.groupsService.setError('');
         this.route.fragment.subscribe((fragment: any) => {
           if(!fragment) {
@@ -85,14 +91,15 @@ export class GoodsComponent implements OnInit {
 
   fetchGoods(hash :string) {
     this.goodsService.setLoading();
-    this.goodsService.fetchGoods(hash).pipe(
-      // timeout(2000),
+    this.goodsService.fetchGoods(hash)
+      .pipe(
+      // timeout(5000),
       // catchError(e => of(null)),
-      // map((array: any[]) => {
+      // map((arrWay: any[]) => {
       //   console.log(array)
       //   return array
       // })
-    ).subscribe(
+      ).subscribe(
       (res: any) => {
         if (res) {
           this.goodsService.setGoods(res.products);
@@ -132,7 +139,7 @@ export class GoodsComponent implements OnInit {
       }
       return null
     })
-    if(this.currentHash === "all") {
+    if(this.currentHash === "все-товары") {
       this.fetchGoods("");
     } else {
       this.fetchGoods(item && item.name);

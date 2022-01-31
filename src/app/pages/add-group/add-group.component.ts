@@ -20,8 +20,7 @@ export class AddGroupComponent implements OnInit {
     public groupsService: GroupsService
   ) {
     this.form = new FormGroup({
-      name: new FormControl('', Validators.required),
-      hash: new FormControl('', Validators.required)
+      name: new FormControl('', Validators.required)
     })
   }
 
@@ -30,10 +29,14 @@ export class AddGroupComponent implements OnInit {
 
   onSubmit() {
     if (!this.form.valid) {
+      console.log('not valid')
       return;
     }
     this.groupsService.setLoading();
-    this.groupsService.addGroup(this.form.value).subscribe(
+    this.groupsService.addGroup({
+      name: this.form.get('name')?.value,
+      hash: this.form.get('name')?.value.toLowerCase().split(' ').join('-')
+    }).subscribe(
       async (res: any) => {
         if(res) {
           this.groupsService.setError('');

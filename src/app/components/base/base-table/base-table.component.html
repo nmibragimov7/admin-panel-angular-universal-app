@@ -1,6 +1,6 @@
 <app-base-spinner *ngIf="isLoaded"></app-base-spinner>
 <div *ngIf="!isLoaded" class="table__wrap">
-  <table class="table">
+  <table class="table mb--1">
     <tr class="table__head">
       <th *ngFor="let col of cols" class="table__cell">{{col.name}}</th>
     </tr>
@@ -19,4 +19,5 @@
       </td>
     </tr>
   </table>
+  <p *ngIf="!rows.length" style="text-align: center; font-size: 20px" class="mb--1">Записей нет</p>
 </div>

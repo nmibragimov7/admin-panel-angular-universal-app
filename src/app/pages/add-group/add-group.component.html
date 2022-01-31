@@ -7,10 +7,10 @@
     [class.error]="form.touched &&  form.controls.name.errors"
     placeholder="Наименование"
   >
-  <input
-    formControlName="hash"
-    class="form__control"
-    [class.error]="form.touched && form.controls.hash.errors"
-    placeholder="Хэш (на английском)">
+<!--  <input-->
+<!--    formControlName="hash"-->
+<!--    class="form__control"-->
+<!--    [class.error]="form.touched && form.controls.hash.errors"-->
+<!--    placeholder="Хэш (на английском)">-->
   <button class="form__button" [class.disabled]="!form.valid" (click)="onSubmit()">Добавить</button>
 </form>

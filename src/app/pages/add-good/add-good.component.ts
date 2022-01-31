@@ -16,7 +16,7 @@ export class AddGoodComponent implements OnInit {
   good!: FormGroup;
   isShown: boolean = false;
   options: any[] = [];
-  fileName: string = '';
+  fileName: any = '';
 
   constructor(
     private goodsService: GoodsService,
@@ -50,9 +50,6 @@ export class AddGoodComponent implements OnInit {
     )
   }
 
-  fileUpload() {
-  }
-
   selectGroup(option: any) {
     this.good.controls.group.setValue(option);
     this.close();
@@ -67,7 +64,6 @@ export class AddGoodComponent implements OnInit {
   }
 
   fileChange(event: any): void {
-    console.log(event.target.files)
     const fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       const file: File = fileList[0];
@@ -77,12 +73,13 @@ export class AddGoodComponent implements OnInit {
         return;
       }
       this.good.controls.file.setValue(file);
-      // this.good.patchValue({
-      //   file
-      // });
-      // @ts-ignore
-      this.fileName = this.good.get('file').value.name;
+      this.fileName = this.good.get('file')?.value.name;
     }
+  }
+
+  fileDelete() {
+    this.good.controls.file.setValue('');
+    this.fileName = '';
   }
 
   onSubmit() {

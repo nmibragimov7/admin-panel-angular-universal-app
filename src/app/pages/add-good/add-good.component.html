@@ -12,17 +12,6 @@
     class="form__control"
     [class.error]="good.touched && good.controls.price.errors"
     placeholder="Стоимость">
-<!--  <div class="form__control d-flex align-center">-->
-<!--    <label for="file" class="form__label">{{good.value.files ? good.value.files : 'Загрузить файл'}}</label>-->
-<!--    <input-->
-<!--      ref="fileInput"-->
-<!--      type="file"-->
-<!--      (click)="fileUpload()"-->
-<!--      formControlName="files"-->
-<!--      id="file"-->
-<!--      hidden-->
-<!--    >-->
-<!--  </div>-->
   <div class="form__select" (clickOutside)="close()">
     <input
       placeholder="Группа"
@@ -45,8 +34,7 @@
   <label
     class="form__control"
     for="file"
-    style="display: flex; align-items: center"
-  >
+    style="display: flex; align-items: center; cursor: pointer">
     <input
       type="file"
       name="file"
@@ -55,7 +43,10 @@
       hidden
       (change)="fileChange($event)"/>
     <div *ngIf="!fileName">Загрузить файл...</div>
-    <div *ngIf="fileName">{{ fileName }}</div>
+    <div *ngIf="fileName" class="form__file">
+      <div>{{ fileName }}</div>
+      <div (click)="fileDelete()" class="form__file-title">Удалить</div>
+    </div>
   </label>
   <button class="form__button" [class.disabled]="!good.valid" (click)="onSubmit()">Добавить</button>
 </form>

@@ -44,7 +44,13 @@ export class GoodsService {
   }
 
   editGood(data: any, id: string): Observable<any> {
-    return this.http.put(`http://localhost:8080/api/products/${id}`, data);
+    let body = new FormData();
+    if (data) {
+      for (const key of Object.keys(data)) {
+        body.append(key, data[key])
+      }
+    }
+    return this.http.put(`http://localhost:8080/api/products/${id}`, body);
   }
 
   deleteGood(id: string): Observable<any> {

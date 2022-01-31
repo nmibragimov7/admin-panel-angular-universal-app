@@ -1,5 +1,16 @@
 .form {
 
+  &__file {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__file-title {
+    color: #E8896D;
+  }
+
   &__select {
     width: 50%;
     position: relative;

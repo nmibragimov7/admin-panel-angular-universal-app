@@ -11,7 +11,7 @@ import { GroupsService } from "../../core/services/groups.service";
 })
 export class GroupsComponent implements OnInit {
 
-  rows!: any[];
+  rows: any[] = [];
   cols: any[] = [
     {
       key: '_id',
@@ -46,6 +46,9 @@ export class GroupsComponent implements OnInit {
     this.groupsService.fetchGroups().subscribe(
       (res: any) => {
         this.rows =  res.groups;
+        if(!res.groups) {
+          this.rows = [];
+        }
         this.groupsService.setError('');
       },
       (res: any) => {
