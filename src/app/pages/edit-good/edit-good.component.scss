@@ -1,5 +1,16 @@
 .form {
 
+  &__button--delete {
+    position: absolute;
+    right: -75px;
+    top: 0;
+    width: auto;
+    padding: 25px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+  }
+
   &__file {
     display: flex;
     justify-content: space-between;
@@ -7,8 +18,10 @@
     width: 100%;
   }
 
-  &__file-title {
-    color: #E8896D;
+
+  &__file-wrap {
+    position: relative;
+    width: 50%;
   }
 
   &__label {
